@@ -494,7 +494,7 @@ $('#miTabla tbody').append(newRow);
 
             <!-- Contenedor para el botón -->
             <div>
-                <span class="btn btn-success">Generar Reporte Excel</span>
+               
                 <button id="enviarDatos" class="btn btn-primary" type="button">Guardar Asistencia</button>
             </div>
             
@@ -517,9 +517,13 @@ $('#miTabla tbody').append(newRow);
                                 datos: JSON.stringify(datos)
                             },
                             success: function (respuesta) {
+                                alert("Los datos fueron guardados exitosamente.");
+
                                 console.log(respuesta);
                                 // Elimina los datos almacenados localmente después de la sincronización
                                 localStorage.removeItem('datos_pendientes');
+                                location.reload();
+
                             },
                             error: function (error) {
                                 localStorage.setItem('datos_pendientes', JSON.stringify(datos));
