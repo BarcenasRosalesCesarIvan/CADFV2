@@ -8,6 +8,7 @@ use App\Http\Controllers\RecorridoController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TablaController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\ProfesorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,15 @@ Route::post('/cambiar-contrasena', [App\Http\Controllers\Auth\ChangePasswordCont
 Route::group(['middleware' => ['role:jefe|admin']], function () {
     Route::get('/prefectura/edit', [prefectoController::class, 'crudPrefecto'])->name('crudPrefecto');
     Route::get('/prefectura/reportes', [RegistroController::class, 'index'])->name('reportesDocente');//525
+    Route::post('/recorrido/pruebasregi', [RegistroController::class, 'obtenerRegis'])->name('ajaxre');
+    Route::post('/recorrido/pruebasre', [RegistroController::class, 'nombrelet'])->name('ajax2r');
+    Route::post('/recorrido/pruebasg', [RegistroController::class, 'obtenerfech'])->name('ajax4');
+    Route::post('/recorrido/prueba', [RegistroController::class, 'cargarProfes'])->name('ajax6');
+    
+
+
+
+
     //Ruta para añadir un nuevo prefecto
     Route::get("/anadir-prefecto", [App\Http\Controllers\Auth\RegisterController::class, "createUser"])->name("createUser");
     //Ruta para eliminar un prefecto
@@ -68,6 +78,8 @@ Route::group(['middleware' => ['role:jefe|admin']], function () {
     
     
     Route::post('/recorrido/pruebasc', [RecorridoController::class, 'registrarAsistencia'])->name('ajax3');
+
+    Route::post('/recorrido/prueba', [RegistroController::class, 'cargarProfes'])->name('ajax6');
     
     Route::post('/recorrido/pruebascesar', [RecorridoController::class, 'updateAsistencia']);
     

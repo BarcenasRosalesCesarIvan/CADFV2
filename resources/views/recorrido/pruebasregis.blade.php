@@ -51,7 +51,6 @@
 <div class="card-header">
     <h1>Reportes de Asistencia Docente</h1>
    
-    <p class="mensaje">El día de hoy es: <span id="fechaHoraActual" class="mensaje"></span></p>
    </div>   
    <!-- resources/views/mi_vista.blade.php -->
 
@@ -63,12 +62,9 @@
          
 
    <div class="card-body">
-    <a href="https://cetech.sjuanrio.tecnm.mx/home" class="btn btn-danger">
-            <i class="fas fa-arrow-left"></i> Regresar
-        </a>
+   
         
         
-        <a href="https://cetech.sjuanrio.tecnm.mx/estudiantes/71536/carga_academica" class="btn btn-primary" target="_black">Imprimir Tablas</a>
         <body>
             <label for="nombre">Buscar:</label>
              <input type="text" id="textoEnTiempoReal" placeholder="Escribe el nombre">
@@ -231,14 +227,19 @@ var semanqId;
             $('#profesorSelect').empty();
             console.log(areasId,semanqId);
             if (areasId) {
+                var csrfToken = $('meta[name="csrf-token"]').attr('content');
                 var dato2 = {
                 areas: areasId,
                 seman: semanqId
             };
                 $.ajax({
-                    url: '/cargar-profesor/' + areasId,
-                    type: 'GET',
+                    url: '{{ route('ajax6') }}',
+                    type: 'POST',
                     dataType: 'json',
+                    headers: {
+                             'X-CSRF-TOKEN': csrfToken  },
+                    data: dato2,
+
                     success: function (data) {
                         $('#profesorSelect').empty();
               

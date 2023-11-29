@@ -89,6 +89,23 @@ $fecha = DB::select('
         ->get();
         return $areas;
     }
+
+    public function cargarProfes(Request $request)
+    {
+        $areaId = $request->input('areas');
+
+        $profe =  DB::table('organigrama')
+        ->select('profesores.nombre', 'profesores.ap_paterno', 'profesores.ap_materno')
+        ->join('materias', 'materias.clave_area', '=', 'organigrama.clave_area')
+        ->join('profesores', 'profesores.clave_area', '=', 'materias.clave_area')
+        ->where('organigrama.descripcion_area', $areaId)
+        ->distinct() // Para seleccionar valores distintos
+        ->orderBy('profesores.nombre') // Ordenar por el nombre del profesor 
+        ->get();
+        
+    
+        return response()->json($profe);
+    }
     public function obtenerfech(Request $request){
         
   $rangoFechas = $request->input('data');

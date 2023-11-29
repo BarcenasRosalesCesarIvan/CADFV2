@@ -127,13 +127,9 @@ $('#miTabla tbody').append(newRow);
 
          
 
-   <div class="card-body">
-    <a href="https://cetech.sjuanrio.tecnm.mx/home" class="btn btn-danger">
-            <i class="fas fa-arrow-left"></i> Regresar
-        </a>
+  
         
         
-        <a href="https://cetech.sjuanrio.tecnm.mx/estudiantes/71536/carga_academica" class="btn btn-primary" target="_black">Imprimir Tablas</a>
 
         <hr>
 
